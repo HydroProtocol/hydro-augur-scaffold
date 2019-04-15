@@ -55,6 +55,14 @@ services:
       - redis
       - ethereum-node
     restart: on-failure:5
+  maker:
+    image: hydroprotocolio/hydro-sdk-backend:augur
+    container_name: hydro-sdk-demo-augur-maker
+    command: /bin/maker
+    restart: on-failure:5
+    environment:
+      - HSK_API_URL=http://api:3001
+      - HSK_LOG_LEVEL=DEBUG
   ws:
     image: hydroprotocolio/hydro-sdk-backend:augur
     container_name: hydro-sdk-demo-augur-ws

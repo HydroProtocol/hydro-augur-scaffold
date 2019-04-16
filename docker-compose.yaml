@@ -3,13 +3,13 @@ volumes:
   datavolume: {}
 services:
   redis:
-    container_name: hydro-sdk-demo-augur-redis
+    container_name: hydro-box-augur-redis
     image: redis:5.0
     ports:
       - 6379:6379
     restart: on-failure:5
   ethereum-node:
-    container_name: hydro-sdk-demo-augur-ethereum-node
+    container_name: hydro-box-augur-ethereum-node
     build:
       context: ./ethereum-test-node
     ports:
@@ -17,13 +17,13 @@ services:
     restart: on-failure:5
   db:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-db
+    container_name: hydro-box-augur-db
     volumes:
       - datavolume:/data
     command: sh -c "cat /db/migrations/0001-init.up.sql /db/seed.sql | sqlite3 /data/sqlite3.db"
   web:
-    image: hydroprotocolio/hydro-sdk-web:augur
-    container_name: hydro-sdk-demo-augur-web
+    image: hydroprotocolio/hydro-box-augur-web:master
+    container_name: hydro-box-augur-web
     ports:
       - 3000:8043
     environment:
@@ -35,7 +35,7 @@ services:
     restart: on-failure:5
   api:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-api
+    container_name: hydro-box-augur-api
     command: /bin/api
     ports:
       - 3001:3001
@@ -57,7 +57,7 @@ services:
     restart: on-failure:5
   maker:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-maker
+    container_name: hydro-box-augur-maker
     command: /bin/maker
     restart: on-failure:5
     environment:
@@ -65,7 +65,7 @@ services:
       - HSK_LOG_LEVEL=DEBUG
   ws:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-ws
+    container_name: hydro-box-augur-ws
     command: /bin/websocket
     ports:
       - 3002:3002
@@ -81,7 +81,7 @@ services:
     restart: on-failure:5
   watcher:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-watcher
+    container_name: hydro-box-augur-watcher
     command: /bin/watcher
     environment:
       - HSK_DATABASE_URL=/data/sqlite3.db
@@ -96,7 +96,7 @@ services:
       - db
   engine:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-engine
+    container_name: hydro-box-augur-engine
     command: /bin/engine
     environment:
       - HSK_DATABASE_URL=/data/sqlite3.db
@@ -111,7 +111,7 @@ services:
     restart: on-failure:5
   launcher:
     image: hydroprotocolio/hydro-sdk-backend:augur
-    container_name: hydro-sdk-demo-augur-launcher
+    container_name: hydro-box-augur-launcher
     command: /bin/launcher
     environment:
       - HSK_DATABASE_URL=/data/sqlite3.db

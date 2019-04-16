@@ -22,7 +22,7 @@ services:
       - datavolume:/data
     command: sh -c "cat /db/migrations/0001-init.up.sql /db/seed.sql | sqlite3 /data/sqlite3.db"
   web:
-    image: hydroprotocolio/hydro-box-augur-web:master
+    image: hydroprotocolio/hydro-box-augur-web:latest
     container_name: hydro-box-augur-web
     ports:
       - 3000:8043

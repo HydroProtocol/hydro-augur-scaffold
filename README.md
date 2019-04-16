@@ -1,4 +1,4 @@
-# Hydro Demo Augur
+# Hydro Box Augur
 
 This repository will guide you through setting up your own Hydro Augur Relayer on the Ethereum blockchain. With a simple docker-compose command, you can have a fully functional Hydro Augur Relayer running on your local server.
 

@@ -1,0 +1,86 @@
+@import '../../styles/variables.scss';
+
+.trade {
+    .trade-tab {
+        border: 0;
+        padding: 12px;
+        background: $backgroundGrey;
+        border-bottom: 1px solid $borderGrey;
+        cursor: pointer;
+        &:first-child {
+            border-left: 1px solid $borderGrey;
+        }
+        &.active {
+            background: $white;
+            border-bottom: 0;
+        }
+    }
+    .form-title {
+        color: $black;
+        font-size: 16px;
+    }
+    .list {
+        margin-top: 8px;
+        .item {
+            padding: 2px 0;
+        }
+    }
+    .input-group {
+        display: flex;
+        align-items: center;
+        position: relative;
+        .unit {
+            position: absolute;
+            right: 12px;
+        }
+    }
+}
+
+.marketDiagrams {
+    width: 100%;
+
+    td:first-child {
+        width: 100px;
+    }
+
+    td:nth-child(2) {
+        position: relative;
+
+        div {
+            position: absolute;
+            left: 0;
+            top: 4px;
+            bottom: 4px;
+            width: 0;
+        }
+    }
+
+    td:last-child {
+        width: 24px;
+        text-align: right;
+    }
+}
+
+.option-color-0 {
+    background-color: #32cd32;
+}
+
+.option-color-1 {
+    background-color: #ff6347;
+}
+
+.option-color-2 {
+    background-color: #6a5acd;
+}
+
+.option-color-3 {
+    background-color: #87ceeb;
+}
+
+.option-color-4 {
+    background-color: #db7093;
+}
+
+.option-color-5 {
+    background-color: #ffa07a;
+}

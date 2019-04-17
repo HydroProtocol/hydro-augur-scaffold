@@ -11,15 +11,15 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 
 1.  Clone this repo
 
-        git clone https://github.com/hydroprotocol/hydro-sdk-demo-augur
+        git clone https://github.com/hydroprotocol/hydro-box-augur
 
 1.  Change working dir
 
-        cd hydro-sdk-demo-augur
+        cd hydro-box-augur
 
 1.  Start
 
-        docker-compose up --build -d 
+        docker-compose up --build -d
 
     This step may takes a few minutes to prepare all envs.
     When complete, this will start all necessary services in docker.
@@ -68,7 +68,7 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 
     Always pull latest images before docker-compose up (If image doesn't have new version, will not pull).
 
-## What comes with this demo?
+## What comes with this box?
 
 - Frontend:
   - A Basic Exchange Web UI

@@ -150,8 +150,6 @@ func (m MarketHandler) handleNewOrder(event *common.NewOrderEvent) (transaction 
 
 	_ = InsertOrder(&eventOrder)
 
-	m.SaveSnapshotV2()
-
 	return transaction, launchLog
 }
 

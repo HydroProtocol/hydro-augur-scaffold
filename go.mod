@@ -16,5 +16,5 @@ require (
 	gopkg.in/go-playground/validator.v9 v9.26.0
 )
 
-# for local test only
+// for local test only
 replace github.com/HydroProtocol/hydro-sdk-backend => ../hydro-sdk-backend

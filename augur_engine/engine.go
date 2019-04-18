@@ -17,9 +17,22 @@ import (
 
 type PgDBHandler struct {
 }
-
 func (pg PgDBHandler) Update(matchResult common.MatchResult) sync.WaitGroup {
 	log.Info("testing PgDBHandler")
+	return sync.WaitGroup{}
+}
+
+type RedisOrderBookHandler struct {
+	kvStore common.IKVStore
+}
+func (handler RedisOrderBookHandler) Update(key string, bookSnapshot *common.SnapshotV2) sync.WaitGroup {
+	bts, err := json.Marshal(bookSnapshot)
+	if err != nil {
+		panic(err)
+	}
+
+	_ = handler.kvStore.Set(key, string(bts), 0)
+
 	return sync.WaitGroup{}
 }
 
@@ -35,6 +48,7 @@ type AugurEngine struct {
 	ctx context.Context
 
 	HydroEngine *engine.Engine
+	kvStore common.IKVStore
 }
 
 func NewAugurEngine(ctx context.Context, redis *redis.Client) *AugurEngine {
@@ -43,11 +57,22 @@ func NewAugurEngine(ctx context.Context, redis *redis.Client) *AugurEngine {
 	handler := PgDBHandler{}
 	e.RegisterDBHandler(&handler)
 
+
 	queue, _ := common.InitQueue(&common.RedisQueueConfig{
 		Name:   common.HYDRO_ENGINE_EVENTS_QUEUE_KEY,
 		Client: redis,
 		Ctx:    ctx,
 	})
+
+	kvStore, _ := common.InitKVStore(
+		&common.RedisKVStoreConfig{
+			Ctx:    ctx,
+			Client: redis,
+		},
+	)
+
+	snapshotHandler := RedisOrderBookHandler{kvStore:kvStore}
+	e.RegisterOrderBookSnapshotHandler(snapshotHandler)
 
 	engine := &AugurEngine{
 		queue:            queue,
@@ -56,6 +81,7 @@ func NewAugurEngine(ctx context.Context, redis *redis.Client) *AugurEngine {
 		Wg:               sync.WaitGroup{},
 
 		HydroEngine: e,
+		kvStore: kvStore,
 	}
 
 	markets := models.MarketDao.FindAllMarkets()

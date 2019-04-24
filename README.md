@@ -1,8 +1,8 @@
-# Hydro Box Augur
+# Hydro Augur Scaffold
 
 This repository will guide you through setting up your own Hydro Augur Relayer on the Ethereum blockchain. With a simple docker-compose command, you can have a fully functional Hydro Augur Relayer running on your local server.
 
-## How do I start a local relayer?
+## Quick Start Guide
 
 0.  As a prerequisite, you must have `docker` and `docker-compose` installed.
 
@@ -29,6 +29,32 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 1.  View Relayer
 
     Open `http://localhost:3000/` on your browser. Proceed to the next step to use your Relayer.
+    
+1.  Setup wallet and address
+
+Note - currently, we only support metamask as your wallet. If you have metamask installed, please move to the next section.
+
+    1.  Install the metamask wallet browser extension
+
+        - For Chrome [Download](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).
+        - For Firefox [Download](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)
+        - For Brave, metamask is built-in. You can enable it at `about:preferences#extensions`.
+
+    1.  Switch network
+
+        Metamask's default network is mainnet. For our augur scaffold, we will use **localhost** to test for now.
+
+        Open the metamask extension and switch the network to `localhost:8545`
+
+    1.  Import an account
+
+        We have already prepared a pre-filled address for you! The private key is `0xb7a0c9d2786fc4dd080ea5d619d36771aeb0c8c26c290afd3451b92ba2b7bc2c`, address is `0x31ebd457b999bf99759602f5ece5aa5033cb56b3`.
+
+        Import the private key into your metamask then switch to this account.
+
+1.  Make some trades
+    
+    Now that your wallet is setup, you can make some trades on your local server to test it out. Try making a buy and sell order.
 
 1.  Get status
 
@@ -68,7 +94,7 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 
     Always pull latest images before docker-compose up (If image doesn't have new version, will not pull).
 
-## What comes with this box?
+## What comes with this scaffolding?
 
 - Frontend:
   - A Basic Exchange Web UI

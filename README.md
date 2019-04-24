@@ -11,11 +11,11 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 
 1.  Clone this repo
 
-        git clone https://github.com/hydroprotocol/hydro-box-augur
+        git clone https://github.com/hydroprotocol/hydro-augur-scaffold
 
 1.  Change working dir
 
-        cd hydro-box-augur
+        cd hydro-augur-scaffold
 
 1.  Start
 

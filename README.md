@@ -32,21 +32,21 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
     
 1.  Setup wallet and address
 
-Note - currently, we only support metamask as your wallet. If you have metamask installed, please move to the next section.
-
-   1.  Install the metamask wallet browser extension
+    1.  Install the metamask wallet browser extension
+        
+        Note - currently, we only support metamask as your wallet. If you have metamask installed, please move to the next section.
 
         - For Chrome [Download](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn).
         - For Firefox [Download](https://addons.mozilla.org/en-US/firefox/addon/ether-metamask/)
         - For Brave, metamask is built-in. You can enable it at `about:preferences#extensions`.
 
-   1.  Switch network
+    1.  Switch network
 
         Metamask's default network is mainnet. For our augur scaffold, we will use **localhost** to test for now.
 
         Open the metamask extension and switch the network to `localhost:8545`
 
-   1.  Import an account
+    1.  Import an account
 
         We have already prepared a pre-filled address for you! The private key is `0xb7a0c9d2786fc4dd080ea5d619d36771aeb0c8c26c290afd3451b92ba2b7bc2c`, address is `0x31ebd457b999bf99759602f5ece5aa5033cb56b3`.
 

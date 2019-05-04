@@ -1,36 +1,62 @@
+![image](assets/hydro_black_wider.png)
+
+***
+
+[Hydro Protocol](https://hydroprotocol.io) is an open source framework for building decentralized exchanges and other DeFi projects.
+
+More detailed information can be found in our [developer documentation](https://developer.hydroprotocol.io/docs/overview/getting-started.html).
+
+Building on Hydro? Come chat with our team on our [Hydro Relayer Slack Channel](https://join.slack.com/t/hydrorelayer/shared_invite/enQtNTc1Mjc3MDUyNTkzLWNmZjI0YmFhNTg4OTU4NTI5ZWE1MzY1ZTc1MDMyYmE1YzkwYWUwYzQ2MTNhMTRjNmVjMmEyOTRkMjFlNzAyMTQ).
+
+***
+
 # Hydro Augur Scaffold
 
-This repository will guide you through setting up your own Hydro Augur Relayer on the Ethereum blockchain. With a simple docker-compose command, you can have a fully functional Hydro Augur Relayer running on your local server.
+This repository will guide you through setting up your own Hydro-Augur Relayer on the Ethereum blockchain. When you finish the steps outlined in this guide, you will have:
+
+- Setup a fully functioning prediction market on your local server
+- Leveraged Hydro Protocol and Augur smart contracts on Ethereum to securely manage a prediction market (PM)
+- Traded some predictions on your Hydro PM
+- Learned how to customize your PM
+
+It should take less than 10 minutes to get your Prediction Market running.
 
 ## Quick Start Guide
 
-0.  As a prerequisite, you must have `docker` and `docker-compose` installed.
+### Prerequisites
 
-    If not, you can follow [this link](https://docs.docker.com/compose/install/) to install them.
-    If you are new to docker and git, make sure you setup your git access key and ssh key.
+The only required software that you must have installed are `docker` and `docker-compose`.
 
-1.  Clone this repo
+If you don't already have them installed, you can follow [this link](https://docs.docker.com/compose/install/) to install them (free).
+
+### Initial Setup
+
+1.  **Clone this repo**
 
         git clone https://github.com/hydroprotocol/hydro-augur-scaffold
 
-1.  Change working dir
+1.  **Change working dir**
 
         cd hydro-augur-scaffold
 
-1.  Start
+1.  **Build and launch your hydro prediction market**
 
         docker-compose up --build -d
 
-    This step may takes a few minutes to prepare all envs.
-    When complete, this will start all necessary services in docker.
+    This step may takes a few minutes.
+    When complete, it will start all necessary services.
 
-    It will use ports `3000`, `3001`, `3002`, `6379`, `8545` on your computer. Please make sure theses ports are available.
+    It will use ports `3000`, `3001`, `3002`, `6379`, `8545` on your computer. Please make sure that these ports are available.
 
-1.  View Relayer
+1.  **Check out your Prediction Market**
 
-    Open `http://localhost:3000/` on your browser. Proceed to the next step to use your Relayer.
+    Open http://localhost:3000/ on your browser to see your prediction market in action!
     
-1.  Setup wallet and address
+## Testdrive your Prediction Market
+
+Now that your PM is up on your local server, let's try it out a bit.
+
+1.  **Connect a wallet**
 
     1.  Install the metamask wallet browser extension
         
@@ -52,17 +78,35 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
 
         Import the private key into your metamask then switch to this account.
 
-1.  Make some trades
+1.  **Make some trades**
     
     Now that your wallet is setup, you can make some trades on your local server to test it out. Try making a buy and sell order.
 
-1.  Get status
+***
+
+# Additional Info
+
+## Useful Docker Commands
+
+1.  **Display the status of all services running**
 
         docker-compose ps
 
-    This will show each service running status.
+    This command displays the status of all services running in docker. It's helpful for troubleshooting and for understanding the combination of components that goes into running your DEX.
 
-1.  View logs
+2. **Stopping your Relayer**
+
+        docker-compose stop
+
+   This command will stop all of the current services running in docker.
+
+3. **Restarting your Relayer**
+
+        docker-compose pull && docker-compose up -d
+
+   The same command that you ran to start it the first time can be used for subsequent restarts. Always run the pull command first, as the docker-compose up command will not run without an image.
+
+1.  **View logs**
 
         # view logs of the service that defined in docker-compose.yml services
         # e.g. view watcher log
@@ -70,29 +114,15 @@ This repository will guide you through setting up your own Hydro Augur Relayer o
         # e.g. view api log
         docker-compose logs --tail=20 -f api
 
-    This will show logs of the service which you point.
+    Much like the status, viewing the logs can give you an idea of the specific details involved in each service.
 
-1.  Stop
-
-        docker-compose stop
-
-    This will stop all services.
-
-## How do I update to the latest?
-
-0.  Update This repo
+5.  **Update this repo**
 
         git pull origin master
 
-1.  Clean old state (data wil be deleted)
+6.  **Completely clean the old state (data will be deleted)**
 
         docker-compose down -v
-
-1.  Run
-
-        docker-compose pull && docker-compose up -d
-
-    Always pull latest images before docker-compose up (If image doesn't have new version, will not pull).
 
 ## What comes with this scaffolding?
 
